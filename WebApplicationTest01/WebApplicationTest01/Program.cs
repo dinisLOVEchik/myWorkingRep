@@ -16,7 +16,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("api/server/ping", ()=> "pong");
+//app.MapGet("api/server/ping", ()=> "pong");
 
 app.UseHttpsRedirection();
 
