@@ -31,3 +31,4 @@ D:\WindowsProgs\myWorkingRep\WebApplicationTest01\WebApplicationTest01\obj\Debug
 D:\WindowsProgs\myWorkingRep\WebApplicationTest01\WebApplicationTest01\obj\Debug\net7.0\WebApplicationTest01.pdb
 D:\WindowsProgs\myWorkingRep\WebApplicationTest01\WebApplicationTest01\obj\Debug\net7.0\WebApplicationTest01.genruntimeconfig.cache
 D:\WindowsProgs\myWorkingRep\WebApplicationTest01\WebApplicationTest01\obj\Debug\net7.0\ref\WebApplicationTest01.dll
+D:\WindowsProgs\myWorkingRep\WebApplicationTest01\WebApplicationTest01\bin\Debug\net7.0\Newtonsoft.Json.dll
