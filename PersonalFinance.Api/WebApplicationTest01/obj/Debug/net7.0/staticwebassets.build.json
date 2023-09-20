@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "h1L5LlMuBqd5DTqfpe+0eswn/NhaOR+IXu0BpOTWJVE=",
-  "Source": "WebApplicationTest01",
-  "BasePath": "_content/WebApplicationTest01",
+  "Hash": "eME4jT6ZGympDu4m+ZmENe2XgZAdr7i4XxKCrYw8/2s=",
+  "Source": "PersonalFinance.Api",
+  "BasePath": "_content/PersonalFinance.Api",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

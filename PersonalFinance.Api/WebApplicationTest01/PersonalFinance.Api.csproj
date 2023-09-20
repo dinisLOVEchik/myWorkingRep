@@ -15,4 +15,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="PersonalFinance.Services">
+      <HintPath>..\PersonalFinance.Services\bin\Debug\PersonalFinance.Services.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

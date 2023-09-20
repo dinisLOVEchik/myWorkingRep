@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json.Serialization;
 using PersonalFinance.Api.Controllers;
+using PersonalFinance.Services;
 
 namespace PersonalFinance.Api.Controllers
 {
@@ -14,6 +15,5 @@ namespace PersonalFinance.Api.Controllers
         public string Calc(CalcRequest calcRequest)
         {
             return calculatorService.Calc(calcRequest.arg1, calcRequest.arg2, calcRequest.op);
-        }
-    }
+        }    }
 }
