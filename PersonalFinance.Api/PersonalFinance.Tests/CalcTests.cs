@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestPlatform;
 using PersonalFinance.Services;
 
-namespace PersonFinance.Tests
+namespace PersonalFinance.Tests
 {
     public class CalcTests
     {

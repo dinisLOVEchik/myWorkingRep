@@ -987,9 +987,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonFinance.Tests\\PersonFinance.Tests.csproj",
-      "projectName": "PersonFinance.Tests",
-      "projectPath": "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonFinance.Tests\\PersonFinance.Tests.csproj",
+      "projectUniqueName": "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonFinance.Tests\\PersonalFinance.Tests.csproj",
+      "projectName": "PersonalFinance.Tests",
+      "projectPath": "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonFinance.Tests\\PersonalFinance.Tests.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
       "outputPath": "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonFinance.Tests\\obj\\",
       "projectStyle": "PackageReference",

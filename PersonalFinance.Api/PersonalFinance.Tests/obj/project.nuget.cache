@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HdxrTuBJgXTvDtaswmqlynEgw/vQB/K22q9IHDiunP+PQQ4a4AShdMa65w1u1RZBjEFE8vcnjQSnnVvRDkEsHg==",
+  "dgSpecHash": "gpjxQWHkjOk9Fe/n/+aNfSshxJ+6l44ECgq2sp/HCadqush+83PCCwta4NtHxbwUGlKjHoeztkIPTgItd8hBdA==",
   "success": true,
-  "projectFilePath": "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonFinance.Tests\\PersonFinance.Tests.csproj",
+  "projectFilePath": "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonFinance.Tests\\PersonalFinance.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.codecoverage\\17.7.1\\microsoft.codecoverage.17.7.1.nupkg.sha512",
