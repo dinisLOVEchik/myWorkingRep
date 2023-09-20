@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalFinance.Api", "WebApplicationTest01\PersonalFinance.Api.csproj", "{AE78334B-FED6-4792-A7E6-FFD7A71E43EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE78334B-FED6-4792-A7E6-FFD7A71E43EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE78334B-FED6-4792-A7E6-FFD7A71E43EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE78334B-FED6-4792-A7E6-FFD7A71E43EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE78334B-FED6-4792-A7E6-FFD7A71E43EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AD658BA3-AEAA-4286-B118-B253E0C17524}
+	EndGlobalSection
+EndGlobal
