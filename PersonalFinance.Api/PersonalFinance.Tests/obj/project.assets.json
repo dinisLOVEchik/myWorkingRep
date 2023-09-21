@@ -377,6 +377,15 @@
             "related": ".xml"
           }
         }
+      },
+      "PersonalFinance.Services/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/PersonalFinance.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PersonalFinance.Services.dll": {}
+        }
       }
     }
   },
@@ -969,6 +978,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "PersonalFinance.Services/1.0.0": {
+      "type": "project",
+      "path": "../PersonalFinance.Services/PersonalFinance.Services.csproj",
+      "msbuildProject": "../PersonalFinance.Services/PersonalFinance.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -977,6 +991,7 @@
       "NUnit >= 3.13.3",
       "NUnit.Analyzers >= 3.6.1",
       "NUnit3TestAdapter >= 4.4.2",
+      "PersonalFinance.Services >= 1.0.0",
       "coverlet.collector >= 3.2.0"
     ]
   },
@@ -1011,7 +1026,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "G:\\СиШарп\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj": {
+              "projectPath": "G:\\СиШарп\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

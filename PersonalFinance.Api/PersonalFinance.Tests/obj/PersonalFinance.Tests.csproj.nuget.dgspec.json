@@ -4,6 +4,21 @@
     "G:\\СиШарп\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Tests\\PersonalFinance.Tests.csproj": {}
   },
   "projects": {
+    "G:\\СиШарп\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj": {
+      "restore": {
+        "projectUniqueName": "G:\\СиШарп\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj",
+        "projectName": "PersonalFinance.Services",
+        "projectPath": "G:\\СиШарп\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
     "G:\\СиШарп\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Tests\\PersonalFinance.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -31,7 +46,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "G:\\СиШарп\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj": {
+                "projectPath": "G:\\СиШарп\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
