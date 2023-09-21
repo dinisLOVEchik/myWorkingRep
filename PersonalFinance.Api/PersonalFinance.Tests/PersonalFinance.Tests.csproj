@@ -17,10 +17,4 @@
     <PackageReference Include="coverlet.collector" Version="3.2.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="PersonalFinance.Services">
-      <HintPath>..\PersonalFinance.Services\obj\Debug\PersonalFinance.Services.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

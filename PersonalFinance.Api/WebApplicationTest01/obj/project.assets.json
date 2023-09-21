@@ -602,23 +602,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {},
+    "C:\\Users\\saburlaev\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\WebApplicationTest01\\PersonalFinance.Api.csproj",
+      "projectUniqueName": "G:\\СиШарп\\myWorkingRep\\PersonalFinance.Api\\WebApplicationTest01\\PersonalFinance.Api.csproj",
       "projectName": "PersonalFinance.Api",
-      "projectPath": "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\WebApplicationTest01\\PersonalFinance.Api.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\WebApplicationTest01\\obj\\",
+      "projectPath": "G:\\СиШарп\\myWorkingRep\\PersonalFinance.Api\\WebApplicationTest01\\PersonalFinance.Api.csproj",
+      "packagesPath": "C:\\Users\\saburlaev\\.nuget\\packages\\",
+      "outputPath": "G:\\СиШарп\\myWorkingRep\\PersonalFinance.Api\\WebApplicationTest01\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\saburlaev\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
