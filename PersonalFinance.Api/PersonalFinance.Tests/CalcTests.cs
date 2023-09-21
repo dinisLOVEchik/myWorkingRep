@@ -3,6 +3,12 @@ namespace PersonalFinance.Tests
 {
     public class CalcTests
     {
+        private readonly CalculatorService _calculatorService;
+        public CalcTests()
+        {
+            _calculatorService = new CalculatorService();
+        }
+
         [SetUp]
         public void Setup()
         {
@@ -14,11 +20,9 @@ namespace PersonalFinance.Tests
             int x = 10;
             int y = 2;
             string op = "add";
-            string expected = "12";
+            decimal expected = 12;
 
-
-            CalculatorService calculatorService = new CalculatorService();
-            string actual = calculatorService.Calc(x, y, op);
+            decimal actual = _calculatorService.Calc(x, y, op);
 
             Assert.AreEqual(expected, actual);
         }
@@ -29,11 +33,9 @@ namespace PersonalFinance.Tests
             int x = 10;
             int y = 2;
             string op = "substruct";
-            string expected = "8";
+            decimal expected = 8;
 
-
-            CalculatorService calculatorService = new CalculatorService();
-            string actual = calculatorService.Calc(x, y, op);
+            decimal actual = _calculatorService.Calc(x, y, op);
 
             Assert.AreEqual(expected, actual);
         }
@@ -44,11 +46,9 @@ namespace PersonalFinance.Tests
             int x = 10;
             int y = 2;
             string op = "multiply";
-            string expected = "20";
+            decimal expected = 20;
 
-
-            CalculatorService calculatorService = new CalculatorService();
-            string actual = calculatorService.Calc(x, y, op);
+            decimal actual = _calculatorService.Calc(x, y, op);
 
             Assert.AreEqual(expected, actual);
         }
@@ -59,11 +59,9 @@ namespace PersonalFinance.Tests
             int x = 10;
             int y = 2;
             string op = "devide";
-            string expected = "5";
+            decimal expected = 5;
 
-
-            CalculatorService calculatorService = new CalculatorService();
-            string actual = calculatorService.Calc(x, y, op);
+            decimal actual = _calculatorService.Calc(x, y, op);
 
             Assert.AreEqual(expected, actual);
         }

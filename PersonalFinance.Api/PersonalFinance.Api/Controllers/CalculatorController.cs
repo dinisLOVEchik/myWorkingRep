@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Text.Json.Serialization;
-using PersonalFinance.Api.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
 using PersonalFinance.Services;
 
 namespace PersonalFinance.Api.Controllers
@@ -10,10 +7,16 @@ namespace PersonalFinance.Api.Controllers
     [ApiController]
     public class CalculatorController : ControllerBase
     {
-        CalculatorService calculatorService = new CalculatorService();
-        [HttpPost]
-        public string Calc(CalcRequest calcRequest)
+        private readonly CalculatorService _calculatorService;
+        public CalculatorController()
         {
-            return calculatorService.Calc(calcRequest.arg1, calcRequest.arg2, calcRequest.op);
-        }    }
+            _calculatorService = new CalculatorService();
+        }
+
+        [HttpPost]
+        public decimal Calc(CalcRequest calcRequest)
+        {
+            return _calculatorService.Calc(calcRequest.arg1, calcRequest.arg2, calcRequest.op);
+        }
+    }
 }
