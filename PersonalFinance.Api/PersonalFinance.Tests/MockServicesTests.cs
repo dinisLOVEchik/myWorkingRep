@@ -8,6 +8,7 @@ namespace PersonalFinance.Tests
 {
     internal class MockServicesTests
     {
+        [Test]
         public void RateGenerationTest()
         {
             List<string> isoCodesOfRates = new List<string>();
@@ -25,12 +26,12 @@ namespace PersonalFinance.Tests
 
             List<ExcangeRate>rates = service.MockExchangeRatesGenerator(isoCodesOfRates);
 
-            String _csvFile = @"G:/СиШарп/myWorkingRep/PersonalFinance.Api/Output.csv";
+            String _csvFile = @"Output.csv";
 
             String separator = ",";
             StringBuilder output = new StringBuilder();
 
-            String[] headings = { "First currency", "Second currency", "Exchange Rate" };
+            String[] headings = { "curr1", "curr2", "rate" };
             output.AppendLine(string.Join(separator, headings));
 
             foreach (ExcangeRate rate in rates.ToList())
