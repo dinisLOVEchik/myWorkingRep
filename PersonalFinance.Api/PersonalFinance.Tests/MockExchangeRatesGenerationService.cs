@@ -43,7 +43,7 @@ namespace PersonalFinance.Tests
                                 count++;
                                 if (isoCodesOfRates[currency1].Equals(rate.getValue2()) && isoCodesOfRates[currency2].Equals(rate.getValue1()))
                                 {
-                                    result.Add(new ExcangeRate(isoCodesOfRates[currency1], isoCodesOfRates[currency2], MIN_VALUE / Math.Round(rate.getRate(), 2)));
+                                    result.Add(new ExcangeRate(isoCodesOfRates[currency1], isoCodesOfRates[currency2], Math.Round(MIN_VALUE / rate.getRate(), 7)));
                                     break;
                                 }
                                 else if (count == result.Count)

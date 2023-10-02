@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace PersonalFinance.Tests
@@ -11,16 +12,15 @@ namespace PersonalFinance.Tests
         [Test]
         public void RateGenerationTest()
         {
-            List<string> isoCodesOfRates = new List<string>();
-            isoCodesOfRates.Add("USD");
-            isoCodesOfRates.Add("RUB");
-            isoCodesOfRates.Add("EUR");
-            isoCodesOfRates.Add("AZN");
-            isoCodesOfRates.Add("BRL");
-            isoCodesOfRates.Add("BYN");
-            isoCodesOfRates.Add("CAD");
-            isoCodesOfRates.Add("CHF");
-            isoCodesOfRates.Add("SAR");
+            List<string> isoCodesOfRates = ParseHtmlWithZenRows.ParseHtmlWithZenRowsMethod();
+            /*string pattern = @"[A-Z]{3}";
+            foreach(string isoCode in ParseHtmlWithZenRows.ParseHtmlWithZenRowsMethod().ToList())
+            {
+                if (Regex.IsMatch(isoCode, pattern) && isoCode.Length == 3)
+                {
+                    isoCodesOfRates.Add(isoCode);
+                }
+            }*/
 
             MockExchangeRatesGenerationService service = new MockExchangeRatesGenerationService();
 

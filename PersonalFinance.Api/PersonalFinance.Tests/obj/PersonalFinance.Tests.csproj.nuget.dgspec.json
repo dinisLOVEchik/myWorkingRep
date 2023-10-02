@@ -1,14 +1,14 @@
 {
   "format": 1,
   "restore": {
-    "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Tests\\PersonalFinance.Tests.csproj": {}
+    "G:\\C-Sharp Projects\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Tests\\PersonalFinance.Tests.csproj": {}
   },
   "projects": {
-    "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj": {
+    "G:\\C-Sharp Projects\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj": {
       "restore": {
-        "projectUniqueName": "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj",
+        "projectUniqueName": "G:\\C-Sharp Projects\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj",
         "projectName": "PersonalFinance.Services",
-        "projectPath": "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj",
+        "projectPath": "G:\\C-Sharp Projects\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj",
         "frameworks": {
           "net472": {
             "projectReferences": {}
@@ -19,20 +19,20 @@
         "net472": {}
       }
     },
-    "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Tests\\PersonalFinance.Tests.csproj": {
+    "G:\\C-Sharp Projects\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Tests\\PersonalFinance.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Tests\\PersonalFinance.Tests.csproj",
+        "projectUniqueName": "G:\\C-Sharp Projects\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Tests\\PersonalFinance.Tests.csproj",
         "projectName": "PersonalFinance.Tests",
-        "projectPath": "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Tests\\PersonalFinance.Tests.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Tests\\obj\\",
+        "projectPath": "G:\\C-Sharp Projects\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Tests\\PersonalFinance.Tests.csproj",
+        "packagesPath": "C:\\Users\\saburlaev\\.nuget\\packages\\",
+        "outputPath": "G:\\C-Sharp Projects\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\saburlaev\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -47,8 +47,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj": {
-                "projectPath": "D:\\WindowsProgs\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj"
+              "G:\\C-Sharp Projects\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj": {
+                "projectPath": "G:\\C-Sharp Projects\\myWorkingRep\\PersonalFinance.Api\\PersonalFinance.Services\\PersonalFinance.Services.csproj"
               }
             }
           }
@@ -63,6 +63,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AngleSharp": {
+              "target": "Package",
+              "version": "[1.0.4, )"
+            },
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.53, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.7.1, )"
