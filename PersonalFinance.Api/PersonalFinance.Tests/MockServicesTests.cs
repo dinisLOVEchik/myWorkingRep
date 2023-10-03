@@ -60,17 +60,17 @@ namespace PersonalFinance.Tests
         [Test]
         public void FirstTest()
         {
-            List<string> currencies = new List<string> {"RUB", "USD"};
+            List<string> currencies = new List<string> {"RUB", "USD", "EUR"};
 
             var service = new MockExchangeRatesGenerationService();
 
             List<ExcangeRate> rates = service.MockExchangeRatesGenerator(currencies);
 
             Assert.NotNull(rates);
-            Assert.That(rates.Count, Is.EqualTo(4));
+            Assert.That(rates.Count, Is.EqualTo(9));
             Assert.That(rates[0].Rate, Is.EqualTo(1));
             Assert.IsTrue(rates[1].Rate > 1);
-            Assert.IsTrue(rates[2].Rate < 1 && rates[2].Rate > 0);
+            Assert.IsTrue(rates[7].Rate < 1 && rates[7].Rate > 0);
         }
     }
 }

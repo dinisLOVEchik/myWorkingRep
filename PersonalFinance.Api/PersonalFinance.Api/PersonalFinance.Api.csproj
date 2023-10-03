@@ -16,9 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="PersonalFinance.Services">
-      <HintPath>..\PersonalFinance.Services\bin\Debug\PersonalFinance.Services.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\PersonalFinance.Services\PersonalFinance.Services.csproj" />
   </ItemGroup>
 
 </Project>
