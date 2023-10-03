@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net;
 using HtmlAgilityPack;
-using AngleSharp;
-using AngleSharp.Dom;
 using System.Text.RegularExpressions;
-using System.Reflection.Metadata;
 
 namespace PersonalFinance.Tests
 {

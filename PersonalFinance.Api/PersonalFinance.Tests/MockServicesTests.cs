@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace PersonalFinance.Tests
 {
@@ -58,7 +53,7 @@ namespace PersonalFinance.Tests
         }
 
         [Test]
-        public void FirstTest()
+        public void CheckingTheCorrectOperationOfTheMethodForCreatingListOfExchangeRatesTest()
         {
             List<string> currencies = new List<string> {"RUB", "USD", "EUR"};
 
