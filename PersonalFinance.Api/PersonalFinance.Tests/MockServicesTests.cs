@@ -53,63 +53,69 @@ namespace PersonalFinance.Tests
             }
         }
 
-        [Test]
-        public void IsTheListNotEmptyAndIsTheNumberOfCurrencyPairsCorrectTest()
-        {
-            List<string> currencies = new List<string> { "RUB", "USD", "EUR" };
+        private static readonly object[] _currencies = {
+            new object[] { new List<string> { "RUB", "USD", "EUR" } }
+        };
 
+        [TestCase("RUB", "USD", "EUR")]
+        public void IsTheListNotEmptyAndIsTheNumberOfCurrencyPairsCorrectTest(params string[] currencies)
+        {
             var service = new MockExchangeRatesGenerationService();
 
-            List<ExchangeRate> rates = service.MockExchangeRatesGenerator(currencies);
+            List<ExchangeRate> rates = service.MockExchangeRatesGenerator(currencies.ToList());
 
             Assert.NotNull(rates);
             Assert.That(rates.Count, Is.EqualTo(9));
         }
 
-        [Test]
-        public void IsTheExchangeRateToItselfEqualToOneTest()
+        [TestCase()]
+        public void isEmptyListTest(params string[] currencies)
         {
-            List<string> currencies = new List<string> { "RUB", "USD", "EUR" };
-
             var service = new MockExchangeRatesGenerationService();
 
-            List<ExchangeRate> rates = service.MockExchangeRatesGenerator(currencies);
+            List<ExchangeRate> rates = service.MockExchangeRatesGenerator(currencies.ToList());
+
+            Assert.IsEmpty(rates);
+        }
+
+        [TestCase("RUB", "USD", "EUR")]
+        public void IsTheExchangeRateToItselfEqualToOneTest(params string[] currencies)
+        {
+            var service = new MockExchangeRatesGenerationService();
+
+            List<ExchangeRate> rates = service.MockExchangeRatesGenerator(currencies.ToList());
 
             Assert.That(rates[0].Rate, Is.EqualTo(1));
         }
 
-        [Test]
-        public void IsTheRateOfTheDominantCurrencyToTheSecondGreaterThanOneTest()
+        [TestCase("RUB", "USD", "EUR")]
+        public void IsTheRateOfTheDominantCurrencyToTheSecondGreaterThanOneTest(params string[] currencies)
         {
-            List<string> currencies = new List<string> { "RUB", "USD", "EUR" };
-
             var service = new MockExchangeRatesGenerationService();
 
-            List<ExchangeRate> rates = service.MockExchangeRatesGenerator(currencies);
+            List<ExchangeRate> rates = service.MockExchangeRatesGenerator(currencies.ToList());
 
             Assert.IsTrue(rates[1].Rate > 1);
         }
 
-        [Test]
-        public void IsTheRateOfTheFirstCurrencyToTheDominantLessThanOneTest()
+        [TestCase("RUB", "USD", "EUR")]
+        public void IsTheRateOfTheFirstCurrencyToTheDominantLessThanOneTest(params string[] currencies)
         {
-            List<string> currencies = new List<string> { "RUB", "USD", "EUR" };
-
             var service = new MockExchangeRatesGenerationService();
 
-            List<ExchangeRate> rates = service.MockExchangeRatesGenerator(currencies);
+            List<ExchangeRate> rates = service.MockExchangeRatesGenerator(currencies.ToList());
 
             Assert.IsTrue(rates[7].Rate < 1);
         }
 
-        [Test]
-        public void IsTheRateOfTheFirstCurrencyToTheDominantEqualToZeroTest()
-        {
-            List<string> currencies = new List<string> { "RUB", "USD", "EUR" };
+        
 
+        [TestCase("RUB", "USD", "EUR")]
+        public void IsTheRateOfTheFirstCurrencyToTheDominantEqualToZeroTest(params string[] currencies)
+        {
             var service = new MockExchangeRatesGenerationService();
 
-            List<ExchangeRate> rates = service.MockExchangeRatesGenerator(currencies);
+            List<ExchangeRate> rates = service.MockExchangeRatesGenerator(currencies.ToList());
 
             Assert.IsTrue(rates[7].Rate > 0);
         }
