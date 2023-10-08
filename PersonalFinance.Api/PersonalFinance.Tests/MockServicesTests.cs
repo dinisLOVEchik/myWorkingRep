@@ -66,18 +66,6 @@ namespace PersonalFinance.Tests
             Assert.That(rates.Count, Is.EqualTo(9));
         }
 
-        [TestCase(new object[]{}, ExpectedResult = true)]
-        [TestCase(new object[] { "RUB", "USD", "EUR" }, ExpectedResult = false)]
-        public bool IsEmptyListTest(params string[] currencies)
-        {
-            var service = new MockExchangeRatesGenerationService();
-
-            List<ExchangeRate> rates = service.MockExchangeRatesGenerator(currencies.ToList());
-
-            bool res = rates.Count > 0; 
-            return res;
-        }
-
         [Test]
         public void IsTheExchangeRateToItselfEqualToOneTest()
         {
@@ -124,6 +112,21 @@ namespace PersonalFinance.Tests
             List<ExchangeRate> rates = service.MockExchangeRatesGenerator(currencies);
 
             Assert.That(rates[7].Rate, Is.GreaterThan(0));
+        }
+
+        /*
+         Пример теста с применением аттрибута TestCase
+        */
+        [TestCase(new object[] { }, ExpectedResult = true)]
+        [TestCase(new object[] { "RUB", "USD", "EUR" }, ExpectedResult = false)]
+        public bool IsEmptyListTest(params string[] currencies)
+        {
+            var service = new MockExchangeRatesGenerationService();
+
+            List<ExchangeRate> rates = service.MockExchangeRatesGenerator(currencies.ToList());
+
+            bool res = rates.Count == 0;
+            return res;
         }
     }
 }
