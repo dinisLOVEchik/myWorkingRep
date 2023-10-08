@@ -416,3 +416,13 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode
+/PersonalFinance.Api/.vs/PersonalFinance/v17/.futdcache.v2
+/PersonalFinance.Api/.vs/PersonalFinance/DesignTimeBuild/.dtbcache.v2
+/PersonalFinance.Api/.vs/PersonalFinance/v17/TestStore/0/testlog.manifest
+/PersonalFinance.Api/.vs/PersonalFinance/v17/.suo
+/PersonalFinance.Api/PersonalFinance.Tests/obj/Debug/net7.0/PersonalFinance.Tests.GeneratedMSBuildEditorConfig.editorconfig
+/PersonalFinance.Api/PersonalFinance.Tests/obj/Debug/net7.0/PersonalFinance.Tests.csproj.AssemblyReference.cache
+/PersonalFinance.Api/PersonalFinance.Api/obj/Debug/net7.0/PersonalFinance.Api.csproj.AssemblyReference.cache
+/PersonalFinance.Api/PersonalFinance.Api/obj/Debug/net7.0/PersonalFinance.Api.GeneratedMSBuildEditorConfig.editorconfig
+/PersonalFinance.Api/.vs/ProjectEvaluation/personalfinance.metadata.v7.bin
+/PersonalFinance.Api/.vs/ProjectEvaluation/personalfinance.projects.v7.bin
