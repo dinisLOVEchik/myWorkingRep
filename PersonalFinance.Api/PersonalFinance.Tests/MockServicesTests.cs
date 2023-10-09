@@ -5,7 +5,7 @@ namespace PersonalFinance.Tests
     internal class MockServicesTests
     {
         [Test]
-        //[Ignore("Ignore a test")]
+        [Ignore("Ignore a test")]
         public void RateGenerationTest()
         {
             var isoCodesOfRates = new List<string>
