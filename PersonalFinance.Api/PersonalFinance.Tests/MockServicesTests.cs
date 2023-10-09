@@ -5,7 +5,7 @@ namespace PersonalFinance.Tests
     internal class MockServicesTests
     {
         [Test]
-        [Ignore("Ignore a test")]
+        //[Ignore("Ignore a test")]
         public void RateGenerationTest()
         {
             var isoCodesOfRates = new List<string>
@@ -28,8 +28,6 @@ namespace PersonalFinance.Tests
 
             var rates = service.MockExchangeRatesGenerator(isoCodesOfRates);
 
-            var _csvFile = "Output.csv";
-
             var separator = ",";
             StringBuilder output = new StringBuilder();
 
@@ -44,7 +42,7 @@ namespace PersonalFinance.Tests
 
             try
             {
-                File.AppendAllText(_csvFile, output.ToString());
+                File.AppendAllText("Output.csv", output.ToString());
             }
             catch (Exception ex)
             {
