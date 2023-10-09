@@ -6,66 +6,32 @@ namespace PersonalFinance.Tests
     {
         const int MIN_VALUE = 1;
         const int MAX_VALUE = 1000;
+        private readonly Random _random = new ();
         public List<ExchangeRate> MockExchangeRatesGenerator(List<string> isoCodesOfRates)
         {
             List<ExchangeRate> result = new List<ExchangeRate>();
 
-            for (int currency1 = 0; currency1 < isoCodesOfRates.Count; currency1++)
+            foreach (var currency1 in isoCodesOfRates)
             {
-                for (int currency2 = 0; currency2 < isoCodesOfRates.Count; currency2++)
+                foreach (var currency2 in isoCodesOfRates)
                 {
-                    CheckAndAddingInputCoupleIfListIsEmpty(result, isoCodesOfRates, currency1, currency2);
+                    AddPairOfCurrencies(result, currency1, currency2);
                 };
             };
             return result;
         }
-
-        private void CheckAndAddingInputCoupleIfListIsEmpty(List<ExchangeRate> result, List<string> isoCodesOfRates, int currency1, int currency2)
+        private void AddPairOfCurrencies (List<ExchangeRate> result, string currency1, string currency2)
         {
-            if (result.Count == 0 && !isoCodesOfRates[currency1].Equals(isoCodesOfRates[currency2]))
+            if (currency1.Equals(currency2))
             {
-                result.Add(new ExchangeRate(isoCodesOfRates[currency1], isoCodesOfRates[currency2], new Random().Next(MIN_VALUE, MAX_VALUE)));
-            }
-            else if (result.Count == 0)
-            {
-                result.Add(new ExchangeRate(isoCodesOfRates[currency1], isoCodesOfRates[currency2], MIN_VALUE));
+                result.Add(new ExchangeRate(currency1, currency2, MIN_VALUE));
             }
             else
             {
-                IfInputCoupleIsTwinsAndListIsEmptyAddCoupleToList(result, isoCodesOfRates, currency1, currency2);
-            }
-        }
-
-        private void IfInputCoupleIsTwinsAndListIsEmptyAddCoupleToList(List<ExchangeRate> result, List<string> isoCodesOfRates, int currency1, int currency2)
-        {
-            if (isoCodesOfRates[currency1].Equals(isoCodesOfRates[currency2]))
-            {
-                result.Add(new ExchangeRate(isoCodesOfRates[currency2], isoCodesOfRates[currency1], MIN_VALUE));
-            }
-            else
-            {
-                IterateOverListProvidedThatInputPairIsNotTwins(result, isoCodesOfRates, currency1, currency2);
-            }
-        }
-        private void IterateOverListProvidedThatInputPairIsNotTwins (List<ExchangeRate> result, List<string> isoCodesOfRates, int currency1, int currency2)
-        {
-            int count = 0;
-            foreach (ExchangeRate rate in result.ToList())
-            {
-                count++;
-                AddIfThereIsMirrorCoupleOfInputPairAndAlsoAddInputPairIfItIsntInLlist(result, isoCodesOfRates, currency1, currency2, rate, count);
-            }
-        }
-
-        private void AddIfThereIsMirrorCoupleOfInputPairAndAlsoAddInputPairIfItIsntInLlist(List<ExchangeRate> result, List<string> isoCodesOfRates, int currency1, int currency2, ExchangeRate rate, int count)
-        {
-            if (isoCodesOfRates[currency1].Equals(rate.Currency2) && isoCodesOfRates[currency2].Equals(rate.Currency1))
-            {
-                result.Add(new ExchangeRate(isoCodesOfRates[currency1], isoCodesOfRates[currency2], Math.Round(MIN_VALUE / rate.Rate, 7)));
-            }
-            else if (count == result.Count)
-            {
-                result.Add(new ExchangeRate(isoCodesOfRates[currency1], isoCodesOfRates[currency2], new Random().Next(MIN_VALUE, MAX_VALUE)));
+                var pair = result.SingleOrDefault(x => x.Currency1.Equals(currency2) && x.Currency2.Equals(currency1));
+                result.Add(pair != null
+                    ? new ExchangeRate(currency1, currency2, Math.Round(MIN_VALUE / pair.Rate, 7))
+                    : new ExchangeRate(currency1, currency2, _random.Next(MIN_VALUE, MAX_VALUE)));
             }
         }
     }
