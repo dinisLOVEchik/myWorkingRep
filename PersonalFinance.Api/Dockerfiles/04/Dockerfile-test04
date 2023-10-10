@@ -1,0 +1,6 @@
+
+FROM nerzhaveyka/dockerfile-test03:0.1
+RUN apk update
+RUN apk add nginx
+
+EXPOSE 80
