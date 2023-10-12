@@ -1,8 +1,0 @@
-
-FROM nerzhaveyka/docker-test03:0.1
-RUN apk add nginx
-COPY nginx.conf /etc/nginx/nginx.conf
-
-EXPOSE 80
-
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
