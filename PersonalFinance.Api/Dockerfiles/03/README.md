@@ -1,13 +1,11 @@
 #To build a docker image:
-docker build -t <username/image-name> -f <path-of-Dockerfile>
-
-#Example: docker build -t nerzhaveyka/personal-finance-api-dock -f ./Dockerfile-test01 .
+docker build -t docker-test-03:0.1
 
 # To run a docker container:
-docker run <image-name>
+docker run docker-test-03:0.1
 
 # To run a docker container in the background:
-docker run -d <image-name>
+docker run -d docker-test-03:0.1
 
 # To "shell" into a running container
 docker exec -it <container-id> /bin/sh
