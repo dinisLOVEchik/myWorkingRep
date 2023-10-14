@@ -1,5 +1,5 @@
 #To build a docker image:
-docker build -t docker-test-03:0.1
+docker build -t docker-test-03:0.1 .
 
 # To run a docker container:
 docker run docker-test-03:0.1
