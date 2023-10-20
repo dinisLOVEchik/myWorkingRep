@@ -1,9 +1,14 @@
 FROM mcr.microsoft.com/mssql/server:2022-latest
-RUN apk update
+ENV ACCEPT_EULA=Y
+ENV SA_PASSWORD=DinSabSQLServerPassword@05
 WORKDIR /data
 
-COPY ./data/script.sql/docker-entrypoint-initdb.d/
+COPY ./script.sql .
+
+RUN /opt/mssql/bin/sqlservr --accept-eula & sleep 20s \
+    && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P DinSabSQLServerPassword@05 -i script.sql \
+    && pkill sqlservr
 
 EXPOSE 8080
 
-ENTRYPOINT ["SELECT", "*", "FROM", "rates;"]
+CMD /opt/mssql/bin/sqlservr
