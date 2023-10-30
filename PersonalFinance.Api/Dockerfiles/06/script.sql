@@ -1,6 +1,6 @@
-CREATE DATABASE MyBase;
+CREATE DATABASE RatesBase;
 
-USE Mybase;
+USE RatesBase;
 
 CREATE TABLE rates (curr1 nchar(3), curr2 nchar(3), rate decimal(18,2));
 
