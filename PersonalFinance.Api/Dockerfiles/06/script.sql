@@ -1,5 +1,14 @@
-CREATE DATABASE RatesBase;
+USE master
+GO
 
+IF NOT EXISTS (
+    SELECT [name]
+        FROM sys.databases
+        WHERE [name] = N'RatesBase'
+)
+
+CREATE DATABASE RatesBase;
+GO
 USE RatesBase;
 
 CREATE TABLE rates (curr1 nchar(3), curr2 nchar(3), rate decimal(18,2));
