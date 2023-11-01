@@ -1,11 +1,11 @@
 #To build a docker image:
-docker build -t docker-test-04:0.1 .
+docker build --build-arg SAPASSWORD=Password12345 -t docker-test-06:0.1 .
 
 # To run a docker container:
-docker run -p 8080:80 docker-test-04:0.1
+docker run -p 1433:1433 docker-test-06:0.1
 
 # To run a docker container in the background:
-docker run -d -p 8080:80 docker-test-04:0.1
+docker run -d -p 1433:1433 docker-test-06:0.1
 
 # To "shell" into a running container
 docker exec -it <container-id> /bin/sh
