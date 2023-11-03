@@ -1,11 +1,11 @@
 #To build a docker image:
-docker build --build-arg SAPASSWORD=Your_Password -t docker-test-06:0.1 .
+docker build --build-arg root_pw=YourPassword -t docker-test-07:0.1 .
 
 # To run a docker container:
-docker run -p 1433:1433 docker-test-06:0.1
+docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=YourPassword docker-test-07:0.1
 
 # To run a docker container in the background:
-docker run -d -p 1433:1433 docker-test-06:0.1
+docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=YourPassword docker-test-07:0.1
 
 # To "shell" into a running container
 docker exec -it <container-id> /bin/sh

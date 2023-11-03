@@ -1,6 +1,5 @@
-FROM mysql
+FROM mysql:8.2.0
 
-#ARG PASSWORD
-ENV MYSQL_ROOT_PASSWORD=Sabdin12345
+ENV MYSQL_ROOT_PASSWORD=${root_pw}
 
 COPY init.sql /docker-entrypoint-initdb.d/

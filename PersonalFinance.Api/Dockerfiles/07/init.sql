@@ -1,7 +1,6 @@
-CREATE DATABASE IF NOT EXISTS RatesBase;
-GO
+CREATE DATABASE IF NOT EXISTS rates_db;
 
-USE RatesBase;
+USE rates_db;
 
 CREATE TABLE rates (curr1 nchar(3), curr2 nchar(3), rate decimal(18,2));
 
