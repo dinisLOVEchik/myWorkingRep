@@ -35,6 +35,10 @@ namespace PersonalFinance.Services
                 }
             }
 
+            reader.Close();
+
+            conn.Close();
+
             return res;
         }
     }
