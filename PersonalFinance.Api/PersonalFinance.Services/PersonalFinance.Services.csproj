@@ -101,6 +101,7 @@
   <ItemGroup>
     <Compile Include="CalculatorService.cs" />
     <Compile Include="CurrencyConverter.cs" />
+    <Compile Include="CurrencyConverterMSSQL.cs" />
     <Compile Include="CurrencyConverterMySQL.cs" />
     <Compile Include="Operation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

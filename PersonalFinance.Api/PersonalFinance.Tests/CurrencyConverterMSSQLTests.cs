@@ -4,17 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PersonalFinance.Services;
 
 namespace PersonalFinance.Tests
 {
-    public class CurrencyConverterMySQLTest
+    internal class CurrencyConverterMSSQLTests
     {
-        private readonly CurrencyConverterMySQL _currencyConverter;
+        private readonly CurrencyConverterMSSQL _currencyConverter;
 
-        public CurrencyConverterMySQLTest()
+        public CurrencyConverterMSSQLTests()
         {
-            _currencyConverter = new CurrencyConverterMySQL();
+            _currencyConverter = new CurrencyConverterMSSQL();
         }
 
         [Test]
