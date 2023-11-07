@@ -13,7 +13,7 @@ namespace PersonalFinance.Services
         {
             decimal res = 0;
 
-            SqlConnection conn = new SqlConnection(@"Data Source=localhost,1433;Initial Catalog=RatesBase;Integrated Security=true");
+            SqlConnection conn = new SqlConnection(@"Data Source=localhost,1433;Initial Catalog=RatesBase;User ID=SA;Password=Dinislam12345;");
 
             conn.Open();
 
