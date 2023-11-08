@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 
 namespace PersonalFinance.Services
@@ -17,21 +13,13 @@ namespace PersonalFinance.Services
 
             conn.Open();
 
-            string sql = "SELECT * FROM rates";
+            string sql = "SELECT rate FROM rates WHERE curr1 = '" + currencyFrom + "' AND curr2 = '" + currencyTo + "'";
 
             SqlCommand command = new SqlCommand(sql, conn);
 
-            SqlDataReader reader = command.ExecuteReader();
+            string dig = command.ExecuteScalar().ToString();
 
-            while (reader.Read())
-            {
-                if (reader[0].ToString() == currencyFrom && reader[1].ToString() == currencyTo)
-                {
-                    res = Decimal.Parse(reader[2].ToString()) * amount;
-                }
-            }
-
-            reader.Close();
+            res = Decimal.Parse(dig) * amount;
 
             conn.Close();
 
