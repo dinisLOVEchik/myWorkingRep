@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace PersonalFinance.Services
 {
@@ -9,7 +11,15 @@ namespace PersonalFinance.Services
         {
             decimal res = 0;
 
-            SqlConnection conn = new SqlConnection(@"Data Source=localhost,1433;Initial Catalog=RatesBase;User ID=SA;Password=Dinislam12345;");
+            var builder = new ConfigurationBuilder()
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            IConfiguration _configuration = builder.Build();
+
+            var MySQLConnectionString = _configuration.GetConnectionString("MSSQLConnection");
+
+            SqlConnection conn = new SqlConnection(MySQLConnectionString);
 
             conn.Open();
 

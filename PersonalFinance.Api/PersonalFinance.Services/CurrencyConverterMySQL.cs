@@ -6,18 +6,26 @@ using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Drawing.Diagrams;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace PersonalFinance.Services
 {
     public class CurrencyConverterMySQL
     {
-        string connStr = "server=localhost;user=root;database=rates_db;password=00400040;";
-
         public decimal Convert(string currencyFrom, string currencyTo, decimal amount)
         {
+            var builder = new ConfigurationBuilder()
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            IConfiguration _configuration = builder.Build();
+
+            var MySQLConnectionString = _configuration.GetConnectionString("MySQLConnection");
+
             decimal res = 0;
 
-            MySqlConnection conn = new MySqlConnection(connStr);
+            MySqlConnection conn = new MySqlConnection(MySQLConnectionString);
 
             conn.Open();
 
