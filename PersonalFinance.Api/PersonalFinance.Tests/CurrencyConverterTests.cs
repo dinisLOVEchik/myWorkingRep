@@ -22,11 +22,11 @@ namespace PersonalFinance.Tests
             Assert.AreEqual(expected, actual);*/
 
             var mockRateProvider = new Mock<IRateProvider>();
-            mockRateProvider.Setup(x => x.GetRate("WSD", "TWW")).Returns(46);
+            mockRateProvider.Setup(x => x.GetRate("USD", "EUR")).Returns(46);
 
             var currencyConverter = new CurrencyConverterCSV(mockRateProvider.Object);
 
-            decimal result = currencyConverter.Convert("WSD", "TWW", 100);
+            decimal result = currencyConverter.Convert("USD", "EUR", 100);
 
             Assert.AreEqual(4600, result);
         }
