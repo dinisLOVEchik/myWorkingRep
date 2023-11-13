@@ -163,9 +163,10 @@
   <ItemGroup>
     <Compile Include="CalculatorService.cs" />
     <Compile Include="CsvRateProvider.cs" />
-    <Compile Include="CurrencyConverterCSV.cs" />
+    <Compile Include="CurrencyConverter.cs" />
     <Compile Include="CurrencyConverterMSSQL.cs" />
-    <Compile Include="CurrencyConverterMySQL.cs" />
+    <Compile Include="MySqlConnector.cs" />
+    <Compile Include="MySqlRateProvider.cs" />
     <Compile Include="FileConnectorCSV.cs" />
     <Compile Include="IRateProvider.cs" />
     <Compile Include="Operation.cs" />

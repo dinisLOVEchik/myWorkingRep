@@ -6,7 +6,7 @@ namespace PersonalFinance.Tests
     public class CurrencyConverterTest
     {
         [Test]
-        public void chekingTest()
+        public void ShouldCheckConvertMethodInCurrencyConverterCsvClass()
         {
             /*string curr1 = "RUB";
             string curr2 = "USD";
@@ -24,7 +24,7 @@ namespace PersonalFinance.Tests
             var mockRateProvider = new Mock<IRateProvider>();
             mockRateProvider.Setup(x => x.GetRate("USD", "EUR")).Returns(46);
 
-            var currencyConverter = new CurrencyConverterCSV(mockRateProvider.Object);
+            var currencyConverter = new CurrencyConverter(mockRateProvider.Object);
 
             decimal result = currencyConverter.Convert("USD", "EUR", 100);
 

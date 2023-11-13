@@ -11,11 +11,11 @@ using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace PersonalFinance.Services
 {
-    public class CurrencyConverterCSV
+    public class CurrencyConverter
     {
         private readonly IRateProvider rateProvider;
 
-        public CurrencyConverterCSV(IRateProvider rateProvider)
+        public CurrencyConverter(IRateProvider rateProvider)
         {
             this.rateProvider = rateProvider;
         }
