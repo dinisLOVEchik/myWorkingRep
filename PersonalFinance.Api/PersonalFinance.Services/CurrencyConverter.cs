@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using Microsoft.Extensions.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
-
-namespace PersonalFinance.Services
+﻿namespace PersonalFinance.Services
 {
     public class CurrencyConverter
     {

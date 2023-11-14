@@ -1,25 +1,26 @@
-﻿using Microsoft.Extensions.Configuration;
-using MySql.Data.MySqlClient;
-using System.IO;
+﻿using MySql.Data.MySqlClient;
 
 namespace PersonalFinance.Services
 {
     public class MySqlConnector
     {
-        private MySqlConnection _connection;
-        public MySqlConnection CreateConnection()
+        private readonly string _connectionString;
+
+        public MySqlConnector(string connectionString)
         {
-            var builder = new ConfigurationBuilder()
-                        .SetBasePath(Directory.GetCurrentDirectory())
-                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            _connectionString = connectionString;
+        }
+        public MySqlConnection Connection()
+        {
+            ConnectionStringCreator mySqlConnector = new ConnectionStringCreator(_connectionString);
+            MySqlConnection mySqlConnection = new MySqlConnection(mySqlConnector.GetConnectionString());
+            return mySqlConnection;
+        }
 
-            IConfiguration _configuration = builder.Build();
-
-            var MySQLConnectionString = _configuration.GetConnectionString("MySQLConnection");
-
-            _connection = new MySqlConnection(MySQLConnectionString);
-
-            return _connection;
+        public string GetRateValue(MySqlConnection connection, string sqlCommand)
+        {
+            MySqlCommand mySqlCommand = new MySqlCommand(sqlCommand, connection);
+            return mySqlCommand.ExecuteScalar().ToString();
         }
     }
 }
