@@ -21,7 +21,7 @@ namespace PersonalFinance.Tests
         [Test]
         public void MySqlChekingTest()
         {
-            IRateProvider provider = new ServerRateProvider("MySqlConnection");
+            IRateProvider provider = new MySqlRateProvider("MySqlConnection");
 
             CurrencyConverter currencyConverter = new(provider);
 
@@ -38,7 +38,7 @@ namespace PersonalFinance.Tests
         [Test]
         public void SqlChekingTest()
         {
-            IRateProvider provider = new ServerRateProvider("MSSQLConnection");
+            IRateProvider provider = new SqlServerRateProvider("MSSQLConnection");
 
             CurrencyConverter currencyConverter = new(provider);
 
