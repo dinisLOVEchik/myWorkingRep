@@ -19,6 +19,23 @@ namespace PersonalFinance.Tests
         }
 
         [Test]
+        public void CsvCheckingTest()
+        {
+            IRateProvider provider = new CsvRateProvider("./data/Output.csv");
+
+            CurrencyConverter currencyConverter = new(provider);
+
+            string curr1 = "RUB";
+            string curr2 = "USD";
+            decimal amount = 100;
+            decimal expected = 4600;
+
+            decimal actual = currencyConverter.Convert(curr1, curr2, amount);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void MySqlChekingTest()
         {
             IRateProvider provider = new MySqlRateProvider("MySqlConnection");
