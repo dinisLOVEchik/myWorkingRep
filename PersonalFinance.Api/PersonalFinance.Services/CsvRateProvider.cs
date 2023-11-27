@@ -12,7 +12,7 @@ namespace PersonalFinance.Services
         private readonly Timer _timer;
         private string[] _csvLines;
         private readonly char _delimetr;
-        private Dictionary<string, Dictionary<string, decimal>> _rates;
+        private readonly Dictionary<string, Dictionary<string, decimal>> _rates;
 
         public CsvRateProvider(string filename, char delimetr)
         {
@@ -26,7 +26,6 @@ namespace PersonalFinance.Services
 
         public decimal GetRate(string currencyFrom, string currencyTo)
         {
-            
             _csvLines = File.ReadAllLines(_filename);
             for (int i = 1; i < _csvLines.Length; i++)
             {
@@ -56,7 +55,6 @@ namespace PersonalFinance.Services
                 _csvLines = newCsvLines;
             }
         }
-
         public void Dispose()
         {
             _timer.Stop();
