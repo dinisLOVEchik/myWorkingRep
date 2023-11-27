@@ -1,5 +1,6 @@
 ﻿using Moq;
 using PersonalFinance.Services;
+using Microsoft.Extensions.Configuration;
 
 namespace PersonalFinance.Tests
 {
@@ -38,7 +39,15 @@ namespace PersonalFinance.Tests
         [Test]
         public void MySqlChekingTest()
         {
-            IRateProvider provider = new MySqlRateProvider("MySqlConnection");
+            var builder = new ConfigurationBuilder()
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            IConfiguration _configuration = builder.Build();
+
+            var connectionString = _configuration.GetConnectionString("MySqlConnection");
+
+            IRateProvider provider = new MySqlRateProvider(connectionString);
 
             CurrencyConverter currencyConverter = new(provider);
 
