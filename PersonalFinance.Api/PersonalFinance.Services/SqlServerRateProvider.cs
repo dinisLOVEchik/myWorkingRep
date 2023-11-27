@@ -7,36 +7,33 @@ namespace PersonalFinance.Services
 {
     public class SqlServerRateProvider : IRateProvider
     {
-        private readonly string _servername;
+        private readonly string _connectionString;
 
-        public SqlServerRateProvider(string servername)
+        public SqlServerRateProvider(string connectionString)
         {
-            _servername = servername;
+            _connectionString = connectionString;
         }
 
         public decimal GetRate(string currencyFrom, string currencyTo)
         {
             string sql = "SELECT rate FROM rates WHERE curr1 = '" + currencyFrom + "' AND curr2 = '" + currencyTo + "'";
 
-            var builder = new ConfigurationBuilder()
-                        .SetBasePath(Directory.GetCurrentDirectory())
-                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-
-            IConfiguration _configuration = builder.Build();
-
-            var connectionString = _configuration.GetConnectionString(_servername);
-
-            SqlConnection sqlConnection = new SqlConnection(connectionString);
-
-            SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
-
-            sqlConnection.Open();
-
-            string rate = sqlCommand.ExecuteScalar().ToString();
-
-            sqlConnection.Close();
-
-            return Decimal.Parse(rate);
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                using (var sqlCommand = new SqlCommand(sql, sqlConnection))
+                {
+                    sqlConnection.Open();
+                    try
+                    {
+                        return Decimal.Parse(sqlCommand.ExecuteScalar().ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());
+                    }
+                }
+            }
+            return 0;
         }
     }
 }

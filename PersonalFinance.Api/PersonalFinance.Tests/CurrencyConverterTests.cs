@@ -39,15 +39,7 @@ namespace PersonalFinance.Tests
         [Test]
         public void MySqlChekingTest()
         {
-            var builder = new ConfigurationBuilder()
-                        .SetBasePath(Directory.GetCurrentDirectory())
-                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-
-            IConfiguration _configuration = builder.Build();
-
-            var connectionString = _configuration.GetConnectionString("MySqlConnection");
-
-            IRateProvider provider = new MySqlRateProvider(connectionString);
+            IRateProvider provider = new MySqlRateProvider(Connector("MySQLConnection"));
 
             CurrencyConverter currencyConverter = new(provider);
 
@@ -64,7 +56,7 @@ namespace PersonalFinance.Tests
         [Test]
         public void SqlChekingTest()
         {
-            IRateProvider provider = new SqlServerRateProvider("MSSQLConnection");
+            IRateProvider provider = new SqlServerRateProvider(Connector("MSSQLConnection"));
 
             CurrencyConverter currencyConverter = new(provider);
 
@@ -77,6 +69,18 @@ namespace PersonalFinance.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
+        private string Connector(string serverName)
+        {
+            var builder = new ConfigurationBuilder()
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            IConfiguration _configuration = builder.Build();
+
+            var connectionString = _configuration.GetConnectionString(serverName);
+
+            return connectionString;
+        }
     }
-    
 }
