@@ -36,9 +36,13 @@ namespace PersonalFinance.Services
                     {
                         if (ex is ArgumentNullException || ex is FormatException)
                         {
-                            throw 
+                            _logger.LogError($"Invalid data for the request: {sql}{Environment.NewLine} " +
+                                $"the data: {ex.Data["currencyFrom"]=currencyFrom}{Environment.NewLine}{ex.Data["currencyTo"] = currencyTo}");
                         }
-                        Console.WriteLine(ex.ToString());
+                        else
+                        {
+                            throw;
+                        }
                     }
                 }
             }
