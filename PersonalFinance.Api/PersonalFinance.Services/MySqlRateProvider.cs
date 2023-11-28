@@ -2,12 +2,15 @@
 using System;
 using MySql.Data.MySqlClient;
 using System.IO;
+using System.Data.SqlClient;
+using Microsoft.Extensions.Logging;
 
 namespace PersonalFinance.Services
 {
     public class MySqlRateProvider : IRateProvider
     {
         private readonly string _connectionString;
+        private readonly ILogger<MySqlRateProvider> _logger;
 
         public MySqlRateProvider(string connectionString)
         {
@@ -16,20 +19,25 @@ namespace PersonalFinance.Services
 
         public decimal GetRate(string currencyFrom, string currencyTo)
         {
-            string sql = "SELECT rate FROM rates WHERE curr1 = '" + currencyFrom + "' AND curr2 = '" + currencyTo + "'";
+            string sql = "SELECT rate FROM rates WHERE curr1 = @currencyFrom AND curr2 = @currencyTo";
 
             using (var mySqlConnection = new MySqlConnection(_connectionString))
             {
                 using (var mySqlCommand = new MySqlCommand(sql, mySqlConnection))
                 {
+                    mySqlCommand.Parameters.AddWithValue("@currencyFrom", currencyFrom);
+                    mySqlCommand.Parameters.AddWithValue("@currencyTo", currencyTo);
                     mySqlConnection.Open();
-
                     try
                     {
                         return Decimal.Parse(mySqlCommand.ExecuteScalar().ToString());
                     }
                     catch (Exception ex)
                     {
+                        if (ex is ArgumentNullException || ex is FormatException)
+                        {
+                            throw 
+                        }
                         Console.WriteLine(ex.ToString());
                     }
                 }

@@ -16,12 +16,14 @@ namespace PersonalFinance.Services
 
         public decimal GetRate(string currencyFrom, string currencyTo)
         {
-            string sql = "SELECT rate FROM rates WHERE curr1 = '" + currencyFrom + "' AND curr2 = '" + currencyTo + "'";
+            string sql = "SELECT rate FROM rates WHERE curr1 = @currencyFrom AND curr2 = @currencyTo";
 
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
                 using (var sqlCommand = new SqlCommand(sql, sqlConnection))
                 {
+                    sqlCommand.Parameters.AddWithValue("@currencyFrom", currencyFrom);
+                    sqlCommand.Parameters.AddWithValue("@currencyTo", currencyTo);
                     sqlConnection.Open();
                     try
                     {
