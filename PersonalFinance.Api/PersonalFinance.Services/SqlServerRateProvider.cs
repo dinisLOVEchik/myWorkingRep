@@ -2,12 +2,14 @@
 using System;
 using System.Data.SqlClient;
 using System.IO;
+using Microsoft.Extensions.Logging;
 
 namespace PersonalFinance.Services
 {
     public class SqlServerRateProvider : IRateProvider
     {
         private readonly string _connectionString;
+        private readonly ILogger<SqlServerRateProvider> _logger;
 
         public SqlServerRateProvider(string connectionString)
         {
@@ -29,9 +31,14 @@ namespace PersonalFinance.Services
                     {
                         return Decimal.Parse(sqlCommand.ExecuteScalar().ToString());
                     }
-                    catch (Exception ex)
+                    catch (Exception ex) when (ex is ArgumentNullException || ex is FormatException)
                     {
-                        Console.WriteLine(ex.ToString());
+                        _logger.LogError($"Invalid data for the request: {sql}{Environment.NewLine} " +
+                                $"the data: {ex.Data["currencyFrom"] = currencyFrom}{Environment.NewLine}{ex.Data["currencyTo"] = currencyTo}");
+                    }
+                    catch
+                    {
+                        throw;
                     }
                 }
             }

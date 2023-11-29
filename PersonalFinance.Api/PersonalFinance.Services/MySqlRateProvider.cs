@@ -32,17 +32,14 @@ namespace PersonalFinance.Services
                     {
                         return Decimal.Parse(mySqlCommand.ExecuteScalar().ToString());
                     }
-                    catch (Exception ex)
+                    catch (Exception ex) when (ex is ArgumentNullException || ex is FormatException)
                     {
-                        if (ex is ArgumentNullException || ex is FormatException)
-                        {
-                            _logger.LogError($"Invalid data for the request: {sql}{Environment.NewLine} " +
-                                $"the data: {ex.Data["currencyFrom"]=currencyFrom}{Environment.NewLine}{ex.Data["currencyTo"] = currencyTo}");
-                        }
-                        else
-                        {
-                            throw;
-                        }
+                        _logger.LogError($"Invalid data for the request: {sql}{Environment.NewLine} " +
+                                $"the data: {ex.Data["currencyFrom"] = currencyFrom}{Environment.NewLine}{ex.Data["currencyTo"] = currencyTo}");
+                    }
+                    catch 
+                    {
+                        throw;
                     }
                 }
             }
