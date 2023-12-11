@@ -36,10 +36,6 @@ namespace PersonalFinance.Services
                         _logger.LogError($"Invalid data for the request: {sql}{Environment.NewLine} " +
                                 $"the data: {ex.Data["currencyFrom"] = currencyFrom}{Environment.NewLine}{ex.Data["currencyTo"] = currencyTo}");
                     }
-                    catch
-                    {
-                        throw;
-                    }
                 }
             }
             return 0;

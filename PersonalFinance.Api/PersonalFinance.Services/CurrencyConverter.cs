@@ -2,16 +2,16 @@
 {
     public class CurrencyConverter
     {
-        private readonly IRateProvider rateProvider;
+        private readonly IRateProvider _rateProvider;
 
         public CurrencyConverter(IRateProvider rateProvider)
         {
-            this.rateProvider = rateProvider;
+            this._rateProvider = rateProvider;
         }
 
         public decimal Convert(string currencyFrom, string currencyTo, decimal amount)
         {
-            var rate = rateProvider.GetRate(currencyFrom, currencyTo);
+            var rate = _rateProvider.GetRate(currencyFrom, currencyTo);
             return rate * amount;
         }
     }
