@@ -50,9 +50,9 @@ namespace PersonalFinance.Services
         }
         private void OnTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            string[] newCsvLines = File.ReadAllLines(_filename);
             _mutex.WaitOne();
-            _csvLines = newCsvLines;
+            _rates.Clear();
+            PopulateRates();
             _mutex.ReleaseMutex();
         }
         public void Dispose()
