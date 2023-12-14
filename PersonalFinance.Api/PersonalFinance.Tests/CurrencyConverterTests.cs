@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace PersonalFinance.Tests
 {
-    public class CurrencyConverterTest
+    public class CurrencyConverterTests
     {
         [Test]
         public void ShouldCheckConvertMethodInCurrencyConverterCsvClass()
@@ -39,7 +39,7 @@ namespace PersonalFinance.Tests
         [Test]
         public void MySqlChekingTest()
         {
-            IRateProvider provider = new MySqlRateProvider(Connector("MySQLConnection"));
+            IRateProvider provider = new MySqlRateProvider(GetConnectionString("MySQLConnection"));
 
             CurrencyConverter currencyConverter = new(provider);
 
@@ -56,7 +56,7 @@ namespace PersonalFinance.Tests
         [Test]
         public void SqlChekingTest()
         {
-            IRateProvider provider = new SqlServerRateProvider(Connector("MSSQLConnection"));
+            IRateProvider provider = new SqlServerRateProvider(GetConnectionString("MSSQLConnection"));
 
             CurrencyConverter currencyConverter = new(provider);
 
@@ -70,7 +70,7 @@ namespace PersonalFinance.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        private string Connector(string serverName)
+        private string GetConnectionString(string serverName)
         {
             var builder = new ConfigurationBuilder()
                         .SetBasePath(Directory.GetCurrentDirectory())
