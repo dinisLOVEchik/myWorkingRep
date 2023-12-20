@@ -14,46 +14,44 @@ namespace PersonalFinance.Services
         private string[] _csvLines;
         private readonly char _delimetr;
         private readonly Dictionary<string, Dictionary<string, decimal>> _rates;
-        private readonly Mutex _mutex;
+        private readonly object _mutex;
 
-        public CsvRateProvider(string filename, char delimetr)
+        public CsvRateProvider(string filename, char delimetr, int updatePeriod)
         {
             _filename = filename;
             _delimetr = delimetr;
-            _timer = new System.Timers.Timer(30000);
+            _timer = new System.Timers.Timer(updatePeriod);
             _timer.Elapsed += OnTimerElapsed;
             _timer.Start();
             _rates = new Dictionary<string, Dictionary<string, decimal>>();
-            _mutex = new Mutex();
+            _mutex = new object();
         }
 
         public decimal GetRate(string currencyFrom, string currencyTo)
         {
-            if (_rates.Count == 0)
+            lock (_mutex)
             {
-                _mutex.WaitOne();
-                PopulateRates();
-                _mutex.ReleaseMutex();
+                if (_rates.Count == 0)
+                {
+                    PopulateRates();
+                }
                 if (_rates.ContainsKey(currencyFrom) && _rates.ContainsKey(currencyTo))
                 {
                     return _rates[currencyFrom][currencyTo];
                 }
-            }
-            else
-            {
-                if (_rates.ContainsKey(currencyFrom) && _rates.ContainsKey(currencyTo))
+                else
                 {
-                    return _rates[currencyFrom][currencyTo];
+                    throw new Exception($"There is a problem getting exchange rate between {currencyFrom}/{currencyTo}, your request can't be completed");
                 }
             }
-            return 0;
         }
         private void OnTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            _mutex.WaitOne();
-            _rates.Clear();
-            PopulateRates();
-            _mutex.ReleaseMutex();
+            lock (_mutex)
+            {
+                _rates.Clear();
+                PopulateRates();
+            }
         }
         public void Dispose()
         {

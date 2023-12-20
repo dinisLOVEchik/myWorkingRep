@@ -22,7 +22,7 @@ namespace PersonalFinance.Tests
         [Test]
         public void CsvCheckingTest()
         {
-            IRateProvider provider = new CsvRateProvider("./data/Output.csv", ';');
+            IRateProvider provider = new CsvRateProvider("./data/Output.csv", ';', 30000);
 
             CurrencyConverter currencyConverter = new(provider);
 
