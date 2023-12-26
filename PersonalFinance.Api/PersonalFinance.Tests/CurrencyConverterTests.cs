@@ -6,7 +6,7 @@ namespace PersonalFinance.Tests
     public class CurrencyConverterTests
     {
         [Test]
-        public void ShouldCheckConvertMethodInCurrencyConverterCsvClass()
+        public void CurrencyConvertor_Convert_ReturnsCorrectValues()
         {
             var mockRateProvider = new Mock<IRateProvider>();
             mockRateProvider.Setup(x => x.GetRate("USD", "EUR")).Returns(46);
@@ -19,7 +19,7 @@ namespace PersonalFinance.Tests
         }
 
         [Test]
-        public void CsvCheckingTest()
+        public void CurrencyConvertor_WorksWith_CsvRateProvider()
         {
             IRateProvider provider = new CsvRateProvider("./data/Output.csv", ';', 30000);
 

@@ -52,7 +52,7 @@ namespace PersonalFinance.Tests
         }
 
         [Test]
-        public void IsTheListNotEmptyAndIsTheNumberOfCurrencyPairsCorrectTest()
+        public void MockExchangeRatesGenerator_GeneratesNonEmptyList()
         {
             List<string> currencies = new () { "RUB", "USD", "EUR" };
 

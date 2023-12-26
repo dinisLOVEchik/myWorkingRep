@@ -6,7 +6,7 @@ namespace PersonalFinance.Tests.Integration
     public class IntegrationTests
     {
         [Test]
-        public void MySqlChekingTest()
+        public void CanConnectToMySqlDatabase()
         {
             IRateProvider provider = new MySqlRateProvider(GetConnectionString("MySQLConnection"));
 
@@ -23,7 +23,7 @@ namespace PersonalFinance.Tests.Integration
         }
 
         [Test]
-        public void SqlServerChekingTest()
+        public void CanCannectToSqlServerDatabase()
         {
             IRateProvider provider = new SqlServerRateProvider(GetConnectionString("MSSQLConnection"));
 
