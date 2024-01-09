@@ -15,9 +15,16 @@ namespace PersonalFinance.Api.Controllers
         }
 
         [HttpPost]
-        public string Convert(CurrenciesRequest currenciesRequest)
+        public IActionResult Convert([FromBody] ConversionRequest request)
         {
-            return _currencyConverter.Convert(currenciesRequest.CurrencyFrom, currenciesRequest.CurrencyTo, currenciesRequest.Amount) + "";
+            return Ok("");
+            //return _currencyConverter.Convert(currenciesRequest.CurrencyFrom, currenciesRequest.CurrencyTo, currenciesRequest.Amount) + "";
+        }
+
+        private bool IsSupportedCurrency(string currency)
+        {
+
+            return true;
         }
     }
 }
