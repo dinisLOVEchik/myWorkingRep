@@ -14,7 +14,12 @@ builder.Services.AddControllers().AddJsonOptions(
  //Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//builder.Services.AddTransient<IRateProvider, SqlServerRateProvider>(sql => new SqlServerRateProvider("MSSQLConnection"));
+//builder.Services.AddTransient<IRateProvider, MySqlRateProvider>(mySql => new MySqlRateProvider("MySQLConnection"));
+builder.Services.AddTransient<IRateProvider, CsvRateProvider>(csv => new CsvRateProvider("./data/Output.csv", ';', 30000));
 builder.Services.AddTransient<CurrencyConverter>();
+
 
 var app = builder.Build();
 
