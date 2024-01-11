@@ -18,21 +18,20 @@ namespace PersonalFinance.Api.Controllers
         [HttpPost]
         public IActionResult Convert([FromBody] ConversionRequest request)
         {
-            var pattern = "^[A-Z]{3}$";
+            var regexPattern = "^[A-Z]{3}$";
 
-            if (Regex.IsMatch(request.CurrencyFrom, pattern) || Regex.IsMatch(request.CurrencyTo, pattern))
+            if (Regex.IsMatch(request.CurrencyFrom, regexPattern) || Regex.IsMatch(request.CurrencyTo, regexPattern))
             {
                 var rate = _currencyConverter.Convert(request.CurrencyFrom, request.CurrencyTo, request.Amount);
-                return Ok(rate);
+                var source = _currencyConverter.GetRateProviderSource();
+                var response = new
+                {
+                    rate, source
+                };
+                return Ok(response);
             }
             else
                 return BadRequest("The request data was entered incorrectly! Try again.");
-        }
-
-        private bool IsSupportedCurrency(string currency)
-        {
-
-            return true;
         }
     }
 }

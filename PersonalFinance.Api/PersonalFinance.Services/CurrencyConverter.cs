@@ -14,6 +14,11 @@
             var rate = _rateProvider.GetRate(currencyFrom, currencyTo);
             return rate * amount;
         }
+
+        public string GetRateProviderSource()
+        {
+            return _rateProvider.GetType().Name;
+        }
     }
     
 }
