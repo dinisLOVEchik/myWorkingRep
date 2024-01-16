@@ -3,8 +3,6 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers().AddJsonOptions(
     x=>
     {
@@ -19,41 +17,28 @@ var conf =  builder.Configuration.AddJsonFile("appsettings.json");
 
 var rateProviderSettings = builder.Configuration.GetSection("RateProviders");
 
-// Регистрация сервисов в зависимости от конфигурации
-/*if (rateProviderSettings["CsvRateProvider"] == "CSV")
+if (rateProviderSettings["CsvRateProvider"] == "CSV")
 {
     builder.Services.AddTransient<IRateProvider>(provider =>
     {
         return new CsvRateProvider("./data/Output.csv", ';', 30000);
     });
-}*/
-if (rateProviderSettings["MySqlRateProvider"] == "MySql")
+}
+else if (rateProviderSettings["MySqlRateProvider"] == "MySql")
 {
     builder.Services.AddTransient<IRateProvider>(provider =>
     {
-        return new MySqlRateProvider("MySQLConnection");
+        return new MySqlRateProvider("server=localhost;user=root;database=rates_db;password=00400040;");
     });
 }
-else if (rateProviderSettings["SqlServerRateProvider"] == "MS-SQL")
+else if (rateProviderSettings["SqlServerRateProvider"] == "MSSQL")
 {
     builder.Services.AddTransient<IRateProvider>(provider =>
     {
-        return new SqlServerRateProvider("MSSQLConnection");
+        return new SqlServerRateProvider("Data Source=localhost,1433;Initial Catalog=RatesBase;User ID=SA;Password=Sabur05Din01;");
     });
 }
-else
-{
-    // Обработка ошибки - не найден подходящий провайдер
-}
-
 builder.Services.AddTransient<CurrencyConverter>();
-
-
-//if (conf[$"RateProviders:{rateProvider.GetType().Name}"])
-//builder.Services.AddTransient<IRateProvider, SqlServerRateProvider>(sql => new SqlServerRateProvider("MSSQLConnection"));
-//builder.Services.AddTransient<IRateProvider, MySqlRateProvider>(mySql => new MySqlRateProvider("MySQLConnection"));
-//builder.Services.AddTransient<IRateProvider, CsvRateProvider>(csv => new CsvRateProvider("./data/Output.csv", ';', 30000));
-//builder.Services.AddTransient<CurrencyConverter>();
 
 
 var app = builder.Build();
