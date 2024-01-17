@@ -18,12 +18,9 @@ namespace PersonalFinance.Api.Controllers
         [HttpPost]
         public IActionResult Convert([FromBody] ConversionRequest request)
         {
-            var currencyPattern = "^[A-Z]{3}$";
-            var digitPattern = "^\\d+$";
-
-            if (Regex.IsMatch(request.CurrencyFrom, currencyPattern) && Regex.IsMatch(request.CurrencyTo, currencyPattern) && Regex.IsMatch(request.Amount, digitPattern))
+            if (ValidateRequest(request))
             {
-                var rate = _currencyConverter.Convert(request.CurrencyFrom, request.CurrencyTo, request.Amount);
+                var rate = _currencyConverter.Convert(request.CurrencyFrom, request.CurrencyTo, Int32.Parse(request.Amount));
                 var source = _currencyConverter.GetRateProviderSource();
                 var response = new
                 {
@@ -33,6 +30,21 @@ namespace PersonalFinance.Api.Controllers
             }
             else
                 return BadRequest("The request data was entered incorrectly! Try again.");
+        }
+
+        private bool ValidateRequest(ConversionRequest request)
+        {
+            var currencyPattern = "^[A-Z]{3}$";
+
+            if (Regex.IsMatch(request.CurrencyFrom, currencyPattern) && Regex.IsMatch(request.CurrencyTo, currencyPattern)
+                && int.TryParse(request.Amount, out int amount))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
