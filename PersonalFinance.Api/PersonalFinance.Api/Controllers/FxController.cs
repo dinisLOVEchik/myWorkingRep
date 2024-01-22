@@ -36,15 +36,8 @@ namespace PersonalFinance.Api.Controllers
         {
             var currencyPattern = "^[A-Z]{3}$";
 
-            if (Regex.IsMatch(request.CurrencyFrom, currencyPattern) && Regex.IsMatch(request.CurrencyTo, currencyPattern)
-                && int.TryParse(request.Amount, out int amount))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Regex.IsMatch(request.CurrencyFrom, currencyPattern) && Regex.IsMatch(request.CurrencyTo, currencyPattern)
+                && int.TryParse(request.Amount, out int amount);
         }
     }
 }

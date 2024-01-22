@@ -15,8 +15,9 @@
             return rate * amount;
         }
 
-        public string GetRateProviderSource()
+        public string GetRateProviderSource(string source)
         {
+            if (source == )
             return _rateProvider.GetType().Name;
         }
     }

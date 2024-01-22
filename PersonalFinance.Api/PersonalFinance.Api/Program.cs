@@ -1,4 +1,5 @@
 using PersonalFinance.Services;
+using System.Reflection.Metadata.Ecma335;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,29 +16,53 @@ builder.Services.AddSwaggerGen();
 
 var conf =  builder.Configuration.AddJsonFile("appsettings.json");
 
-var rateProviderSettings = builder.Configuration.GetSection("RateProviders");
+var rateProviders = builder.Configuration.GetSection("RateProviders");
+//var fxRatesConnectionStrings = fxRatesProviderSettings.GetSection("FxRatesConnectionStrings");
 
-if (rateProviderSettings["CsvRateProvider"] == "CSV")
+builder.Services.AddTransient<IRateProvider>(provider =>
+{
+    if (provider.GetType().Name.Equals(rateProviders["CsvRateProvider"]))
+    {
+        return new CsvRateProvider("./data/Output.csv", ';', 30000);
+    }
+    else if (provider.GetType().Name.Equals(rateProviders["MySqlRateProvider"]))
+    {
+        return new MySqlRateProvider("server=localhost;user=root;database=rates_db;password=00400040;");
+    }
+    else if (provider.GetType().Name.Equals(rateProviders["SqlServerRateProvider"]))
+    {
+        return new SqlServerRateProvider("Data Source=localhost,1433;Initial Catalog=RatesBase;User ID=SA;Password=Sabur05Din01;");
+    }
+    else
+    {
+        throw new InvalidOperationException("Invalid rate provider type");
+    }
+});
+
+/*if (fxRatesProviderSettings["CsvRateProvider"] == "CSV")
 {
     builder.Services.AddTransient<IRateProvider>(provider =>
     {
         return new CsvRateProvider("./data/Output.csv", ';', 30000);
     });
 }
-else if (rateProviderSettings["MySqlRateProvider"] == "MySql")
+else if (fxRatesProviderSettings["MySqlRateProvider"] == "MySql")
 {
     builder.Services.AddTransient<IRateProvider>(provider =>
     {
         return new MySqlRateProvider("server=localhost;user=root;database=rates_db;password=00400040;");
     });
 }
-else if (rateProviderSettings["SqlServerRateProvider"] == "MSSQL")
+else if (fxRatesProviderSettings["SqlServerRateProvider"] == "MSSQL")
 {
     builder.Services.AddTransient<IRateProvider>(provider =>
     {
         return new SqlServerRateProvider("Data Source=localhost,1433;Initial Catalog=RatesBase;User ID=SA;Password=Sabur05Din01;");
     });
-}
+}*/
+
+
+
 builder.Services.AddTransient<CurrencyConverter>();
 
 
