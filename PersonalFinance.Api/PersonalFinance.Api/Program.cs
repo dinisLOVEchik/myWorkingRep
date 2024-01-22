@@ -16,10 +16,10 @@ builder.Services.AddSwaggerGen();
 
 var conf =  builder.Configuration.AddJsonFile("appsettings.json");
 
-var rateProviders = builder.Configuration.GetSection("RateProviders");
-//var fxRatesConnectionStrings = fxRatesProviderSettings.GetSection("FxRatesConnectionStrings");
+var fxRatesProviderSettings = builder.Configuration.GetSection("fxRatesProviderSettings");
+var fxRatesConnectionStrings = fxRatesProviderSettings.GetSection("FxRatesConnectionStrings");
 
-builder.Services.AddTransient<IRateProvider>(provider =>
+/*builder.Services.AddTransient<IRateProvider>(provider =>
 {
     if (provider.GetType().Name.Equals(rateProviders["CsvRateProvider"]))
     {
@@ -37,31 +37,33 @@ builder.Services.AddTransient<IRateProvider>(provider =>
     {
         throw new InvalidOperationException("Invalid rate provider type");
     }
-});
+});*/
 
-/*if (fxRatesProviderSettings["CsvRateProvider"] == "CSV")
+if (fxRatesProviderSettings["FxRateProvider"] == "CSV")
 {
     builder.Services.AddTransient<IRateProvider>(provider =>
     {
         return new CsvRateProvider("./data/Output.csv", ';', 30000);
     });
 }
-else if (fxRatesProviderSettings["MySqlRateProvider"] == "MySql")
+else if (fxRatesProviderSettings["FxRateProvider"] == "MySql")
 {
     builder.Services.AddTransient<IRateProvider>(provider =>
     {
         return new MySqlRateProvider("server=localhost;user=root;database=rates_db;password=00400040;");
     });
 }
-else if (fxRatesProviderSettings["SqlServerRateProvider"] == "MSSQL")
+else if (fxRatesProviderSettings["FxRateProvider"] == "MSSQL")
 {
     builder.Services.AddTransient<IRateProvider>(provider =>
     {
-        return new SqlServerRateProvider("Data Source=localhost,1433;Initial Catalog=RatesBase;User ID=SA;Password=Sabur05Din01;");
+        return new SqlServerRateProvider(fxRatesConnectionStrings["SqlServerConnectionString"]);
     });
-}*/
-
-
+}
+else
+{
+    throw new InvalidOperationException("Invalid rate provider type");
+}
 
 builder.Services.AddTransient<CurrencyConverter>();
 
