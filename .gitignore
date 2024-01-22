@@ -426,3 +426,5 @@ FodyWeavers.xsd
 /PersonalFinance.Api/PersonalFinance.Api/obj/Debug/net7.0/PersonalFinance.Api.GeneratedMSBuildEditorConfig.editorconfig
 /PersonalFinance.Api/.vs/ProjectEvaluation/personalfinance.metadata.v7.bin
 /PersonalFinance.Api/.vs/ProjectEvaluation/personalfinance.projects.v7.bin
+/PersonalFinance.Api/PersonalFinance.Api/obj/Debug/net7.0/PersonalFinance.Api.AssemblyInfo.cs
+/PersonalFinance.Api/PersonalFinance.Api/obj/Debug/net7.0/PersonalFinance.Api.AssemblyInfoInputs.cache
