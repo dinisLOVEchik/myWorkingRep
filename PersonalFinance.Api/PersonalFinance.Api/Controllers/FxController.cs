@@ -9,16 +9,18 @@ namespace PersonalFinance.Api.Controllers
     public class FxController : ControllerBase
     {
         private readonly CurrencyConverter _currencyConverter;
+        private readonly CurrencyValidator _currencyValidator;
 
-        public FxController(CurrencyConverter currencyConverter)
+        public FxController(CurrencyConverter currencyConverter, CurrencyValidator currencyValidator)
         {
             _currencyConverter = currencyConverter;
+            _currencyValidator = currencyValidator;
         }
 
         [HttpPost]
         public IActionResult Convert([FromBody] ConversionRequest request)
         {
-            if (ValidateRequest(request))
+            if (_currencyValidator.ValidateRequest(request.CurrencyFrom, request.CurrencyTo, request.Amount))
             {
                 var rate = _currencyConverter.Convert(request.CurrencyFrom, request.CurrencyTo, Int32.Parse(request.Amount));
                 var source = _currencyConverter.GetRateProviderSource();

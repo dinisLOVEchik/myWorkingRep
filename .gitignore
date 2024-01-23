@@ -428,3 +428,4 @@ FodyWeavers.xsd
 /PersonalFinance.Api/.vs/ProjectEvaluation/personalfinance.projects.v7.bin
 /PersonalFinance.Api/PersonalFinance.Api/obj/Debug/net7.0/PersonalFinance.Api.AssemblyInfo.cs
 /PersonalFinance.Api/PersonalFinance.Api/obj/Debug/net7.0/PersonalFinance.Api.AssemblyInfoInputs.cache
+/PersonalFinance.Api/PersonalFinance.Api/appsettings.Development.json

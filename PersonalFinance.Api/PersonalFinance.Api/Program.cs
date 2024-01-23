@@ -1,3 +1,4 @@
+using PersonalFinance.Api;
 using PersonalFinance.Services;
 using System.Reflection.Metadata.Ecma335;
 using System.Text.Json.Serialization;
@@ -14,30 +15,14 @@ builder.Services.AddControllers().AddJsonOptions(
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var conf =  builder.Configuration.AddJsonFile("appsettings.json");
+var conf = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile("appsettings.Development.json", optional: true)
+    .Build();
 
-var fxRatesProviderSettings = builder.Configuration.GetSection("fxRatesProviderSettings");
+var fxRatesProviderSettings = conf.GetSection("fxRatesProviderSettings");
 var fxRatesConnectionStrings = fxRatesProviderSettings.GetSection("FxRatesConnectionStrings");
-
-/*builder.Services.AddTransient<IRateProvider>(provider =>
-{
-    if (provider.GetType().Name.Equals(rateProviders["CsvRateProvider"]))
-    {
-        return new CsvRateProvider("./data/Output.csv", ';', 30000);
-    }
-    else if (provider.GetType().Name.Equals(rateProviders["MySqlRateProvider"]))
-    {
-        return new MySqlRateProvider("server=localhost;user=root;database=rates_db;password=00400040;");
-    }
-    else if (provider.GetType().Name.Equals(rateProviders["SqlServerRateProvider"]))
-    {
-        return new SqlServerRateProvider("Data Source=localhost,1433;Initial Catalog=RatesBase;User ID=SA;Password=Sabur05Din01;");
-    }
-    else
-    {
-        throw new InvalidOperationException("Invalid rate provider type");
-    }
-});*/
 
 if (fxRatesProviderSettings["FxRateProvider"] == "CSV")
 {
@@ -50,7 +35,7 @@ else if (fxRatesProviderSettings["FxRateProvider"] == "MySql")
 {
     builder.Services.AddTransient<IRateProvider>(provider =>
     {
-        return new MySqlRateProvider("server=localhost;user=root;database=rates_db;password=00400040;");
+        return new MySqlRateProvider(fxRatesConnectionStrings["MySqlConnectionString"]);
     });
 }
 else if (fxRatesProviderSettings["FxRateProvider"] == "MSSQL")
@@ -66,6 +51,7 @@ else
 }
 
 builder.Services.AddTransient<CurrencyConverter>();
+builder.Services.AddTransient<CurrencyValidator>();
 
 
 var app = builder.Build();
