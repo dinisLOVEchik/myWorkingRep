@@ -180,6 +180,7 @@
     <Compile Include="CalculatorService.cs" />
     <Compile Include="CsvRateProvider.cs" />
     <Compile Include="CurrencyConverter.cs" />
+    <Compile Include="FxRatesProviderResolver.cs" />
     <Compile Include="MySqlRateProvider.cs" />
     <Compile Include="IRateProvider.cs" />
     <Compile Include="Operation.cs" />

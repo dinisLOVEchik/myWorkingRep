@@ -24,33 +24,13 @@ var conf = new ConfigurationBuilder()
 var fxRatesProviderSettings = conf.GetSection("fxRatesProviderSettings");
 var fxRatesConnectionStrings = fxRatesProviderSettings.GetSection("FxRatesConnectionStrings");
 
-if (fxRatesProviderSettings["FxRateProvider"] == "CSV")
-{
-    builder.Services.AddTransient<IRateProvider>(provider =>
-    {
-        return new CsvRateProvider("./data/Output.csv", ';', 30000);
-    });
-}
-else if (fxRatesProviderSettings["FxRateProvider"] == "MySql")
-{
-    builder.Services.AddTransient<IRateProvider>(provider =>
-    {
-        return new MySqlRateProvider(fxRatesConnectionStrings["MySqlConnectionString"]);
-    });
-}
-else if (fxRatesProviderSettings["FxRateProvider"] == "MSSQL")
-{
-    builder.Services.AddTransient<IRateProvider>(provider =>
-    {
-        return new SqlServerRateProvider(fxRatesConnectionStrings["SqlServerConnectionString"]);
-    });
-}
-else
-{
-    throw new InvalidOperationException("Invalid rate provider type");
-}
+var fxRatesProviderResolver = new FxRatesProviderResolver();
+fxRatesProviderResolver.Add("CSV", new CsvRateProvider("./data/Output.csv", ';', 30000));
+fxRatesProviderResolver.Add("MySql", new MySqlRateProvider(fxRatesConnectionStrings["MySqlConnectionString"]));
+fxRatesProviderResolver.Add("MSSQL", new SqlServerRateProvider(fxRatesConnectionStrings["SqlServerConnectionString"]));
 
-builder.Services.AddTransient<CurrencyConverter>();
+builder.Services.AddSingleton(fxRatesProviderResolver);
+
 builder.Services.AddTransient<CurrencyValidator>();
 
 
