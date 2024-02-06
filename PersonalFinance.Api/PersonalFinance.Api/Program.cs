@@ -1,6 +1,5 @@
 using PersonalFinance.Api;
 using PersonalFinance.Services;
-using System.Reflection.Metadata.Ecma335;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +31,7 @@ fxRatesProviderResolver.Add("MSSQL", new SqlServerRateProvider(fxRatesConnection
 builder.Services.AddSingleton(fxRatesProviderResolver);
 
 builder.Services.AddTransient<CurrencyValidator>();
+builder.Services.AddTransient<SnakeCaseConverter>();
 
 
 var app = builder.Build();

@@ -1,4 +1,6 @@
-﻿namespace PersonalFinance.Api
+﻿using Newtonsoft.Json;
+
+namespace PersonalFinance.Api
 {
     public class ConversionRequest
     {
