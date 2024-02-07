@@ -31,7 +31,6 @@ fxRatesProviderResolver.Add("MSSQL", new SqlServerRateProvider(fxRatesConnection
 builder.Services.AddSingleton(fxRatesProviderResolver);
 
 builder.Services.AddTransient<CurrencyValidator>();
-builder.Services.AddTransient<SnakeCaseConverter>();
 
 
 var app = builder.Build();

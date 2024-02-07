@@ -9,13 +9,11 @@ namespace PersonalFinance.Api.Controllers
     {
         private readonly FxRatesProviderResolver _fxRatesProviderResolver;
         private readonly CurrencyValidator _currencyValidator;
-        private readonly SnakeCaseConverter _snakeCase;
 
-        public FxController(FxRatesProviderResolver fxRatesProviderResolver, CurrencyValidator currencyValidator, SnakeCaseConverter snakeCase)
+        public FxController(FxRatesProviderResolver fxRatesProviderResolver, CurrencyValidator currencyValidator)
         {
             _fxRatesProviderResolver = fxRatesProviderResolver;
             _currencyValidator = currencyValidator;
-            _snakeCase = snakeCase;
         }
 
         [HttpPost]
@@ -26,7 +24,7 @@ namespace PersonalFinance.Api.Controllers
                 var fxRatesProvider = _fxRatesProviderResolver.Resolve(request.FxRatesSource);
                 var converter = new CurrencyConverter(fxRatesProvider);
                 var rate = converter.Convert(request.CurrencyFrom, request.CurrencyTo, Int32.Parse(request.Amount));
-                var source = _snakeCase.ToSnakeCase(converter.GetRateProviderSource());
+                var source = converter.GetRateProviderSource();
                 var response = new
                 {
                     rate, source

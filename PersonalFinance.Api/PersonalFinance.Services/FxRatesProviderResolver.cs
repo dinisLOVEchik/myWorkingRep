@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class FxRatesProviderResolver
 {
-    private Dictionary<string, IRateProvider> providers = new Dictionary<string, IRateProvider>();
+    private readonly Dictionary<string, IRateProvider> providers = new Dictionary<string, IRateProvider>();
 
     public void Add(string source, IRateProvider provider)
     {
