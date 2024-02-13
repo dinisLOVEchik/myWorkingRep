@@ -17,14 +17,14 @@ builder.Services.AddSwaggerGen();
 var conf = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("appsettings.Development.json", optional: true)
+    .AddUserSecrets<Program>() 
     .Build();
 
 var fxRatesProviderSettings = conf.GetSection("fxRatesProviderSettings");
 var fxRatesConnectionStrings = fxRatesProviderSettings.GetSection("FxRatesConnectionStrings");
 
 var fxRatesProviderResolver = new FxRatesProviderResolver();
-fxRatesProviderResolver.Add("CSV", new CsvRateProvider("./data/Output.csv", ';', 30000));
+fxRatesProviderResolver.Add("CSV", new CsvRateProvider(fxRatesConnectionStrings["CsvFilePath"], ';', 30000));
 fxRatesProviderResolver.Add("MySql", new MySqlRateProvider(fxRatesConnectionStrings["MySqlConnectionString"]));
 fxRatesProviderResolver.Add("MSSQL", new SqlServerRateProvider(fxRatesConnectionStrings["SqlServerConnectionString"]));
 

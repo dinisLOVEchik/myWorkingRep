@@ -19,19 +19,19 @@ namespace PersonalFinance.Api.Controllers
         [HttpPost]
         public IActionResult Convert([FromBody] ConversionRequest request)
         {
-            if (_currencyValidator.ValidateRequest(request.CurrencyFrom, request.CurrencyTo, request.Amount))
+            if (!_currencyValidator.ValidateRequest(request.CurrencyFrom, request.CurrencyTo, request.Amount))
+                return BadRequest("The request data was entered incorrectly! Try again.");
+            var fxRatesProvider = _fxRatesProviderResolver.Resolve(request.FxRatesSource);
+            var converter = new CurrencyConverter(fxRatesProvider);
+            var rate = converter.Convert(request.CurrencyFrom, request.CurrencyTo, Int32.Parse(request.Amount));
+            var source = converter.GetRateProviderSource();
+            var response = new
             {
-                var fxRatesProvider = _fxRatesProviderResolver.Resolve(request.FxRatesSource);
-                var converter = new CurrencyConverter(fxRatesProvider);
-                var rate = converter.Convert(request.CurrencyFrom, request.CurrencyTo, Int32.Parse(request.Amount));
-                var source = converter.GetRateProviderSource();
-                var response = new
-                {
-                    rate, source
-                };
-                return Ok(response);
-            }
-            return BadRequest("The request data was entered incorrectly! Try again.");
+                rate,
+                source
+            };
+            return Ok(response);
+
         }
     }
 }

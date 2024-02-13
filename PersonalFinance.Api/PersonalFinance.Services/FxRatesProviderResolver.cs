@@ -12,10 +12,8 @@ public class FxRatesProviderResolver
 
     public IRateProvider Resolve(string source)
     {
-        if (providers.ContainsKey(source))
-        {
-            return providers[source];
-        }
-        throw new KeyNotFoundException("FxRatesProvider not found");
+        return providers.ContainsKey(source)
+            ? providers[source]
+            : throw new KeyNotFoundException("FxRatesProvider not found");    
     }
 }
