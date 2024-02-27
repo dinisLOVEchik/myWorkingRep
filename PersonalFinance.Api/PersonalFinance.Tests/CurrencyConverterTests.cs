@@ -15,7 +15,7 @@ namespace PersonalFinance.Tests
 
             decimal result = currencyConverter.Convert("USD", "EUR", 100);
 
-            Assert.AreEqual(4600, result);
+            Assert.That(result, Is.EqualTo(4600));
         }
 
         [Test]
@@ -32,7 +32,7 @@ namespace PersonalFinance.Tests
 
             decimal actual = currencyConverter.Convert(curr1, curr2, amount);
 
-            Assert.AreEqual(expected, actual);
+            Assert.That(actual, Is.EqualTo(expected));
         }
     }
 }

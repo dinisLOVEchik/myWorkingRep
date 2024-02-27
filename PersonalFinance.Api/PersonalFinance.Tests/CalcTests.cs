@@ -24,7 +24,7 @@ namespace PersonalFinance.Tests
 
             decimal actual = _calculatorService.Calc(x, y, op);
 
-            Assert.AreEqual(expected, actual);
+            Assert.That(actual, Is.EqualTo(expected));
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace PersonalFinance.Tests
 
             decimal actual = _calculatorService.Calc(x, y, op);
 
-            Assert.AreEqual(expected, actual);
+            Assert.That(actual, Is.EqualTo(expected));
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace PersonalFinance.Tests
 
             decimal actual = _calculatorService.Calc(x, y, op);
 
-            Assert.AreEqual(expected, actual);
+            Assert.That(actual, Is.EqualTo(expected));
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace PersonalFinance.Tests
 
             decimal actual = _calculatorService.Calc(x, y, op);
 
-            Assert.AreEqual(expected, actual);
+            Assert.That(actual, Is.EqualTo(expected));
         }
     }
 }

@@ -5,8 +5,14 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>396f3c10-bcbd-427e-a38d-9f983a565a0e</UserSecretsId>
-    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+	<PublishProfile>DefaultContainer</PublishProfile>
+	<ContainerBaseImage>mcr.microsoft.com/dotnet/aspnet:8.0.2-alpine3.18-amd64</ContainerBaseImage>
+    <ContainerImageTag>1.2.3-alpha2</ContainerImageTag>
   </PropertyGroup>
+
+	<ItemGroup>
+		<ContainerPort Include="80" Type="tcp" />
+	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="3.0.1" />
@@ -15,7 +21,6 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
-    <PackageReference Include="Microsoft.NET.Build.Containers" Version="8.0.200" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
     <PackageReference Include="MySql.Data" Version="8.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

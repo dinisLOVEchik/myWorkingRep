@@ -19,7 +19,7 @@ namespace PersonalFinance.Tests.Integration
 
             decimal actual = currencyConverter.Convert(curr1, curr2, amount);
 
-            Assert.AreEqual(expected, actual);
+            Assert.That(actual, Is.EqualTo(expected));
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace PersonalFinance.Tests.Integration
 
             decimal actual = currencyConverter.Convert(curr1, curr2, amount);
 
-            Assert.AreEqual(expected, actual);
+            Assert.That(actual, Is.EqualTo(expected));
         }
 
         private string GetConnectionString(string serverName)

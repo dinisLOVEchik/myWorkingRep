@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using NUnit.Framework;
 
 namespace PersonalFinance.Tests
 {
@@ -44,7 +45,7 @@ namespace PersonalFinance.Tests
             {
                 File.AppendAllText("Output.csv", output.ToString());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("Data could not be written to the CSV file.");
                 return;
@@ -60,7 +61,7 @@ namespace PersonalFinance.Tests
 
             var rates = service.MockExchangeRatesGenerator(currencies);
 
-            Assert.NotNull(rates);
+            Assert.That(rates, Is.Not.Null);
             Assert.That(rates.Count, Is.EqualTo(9));
         }
 
