@@ -5,9 +5,6 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>396f3c10-bcbd-427e-a38d-9f983a565a0e</UserSecretsId>
-	<PublishProfile>DefaultContainer</PublishProfile>
-	<ContainerBaseImage>mcr.microsoft.com/dotnet/aspnet:8.0.2-alpine3.18-amd64</ContainerBaseImage>
-    <ContainerImageTag>1.2.3-alpha2</ContainerImageTag>
   </PropertyGroup>
 
 	<ItemGroup>
