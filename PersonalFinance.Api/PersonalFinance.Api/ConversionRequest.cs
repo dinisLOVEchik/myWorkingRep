@@ -9,14 +9,14 @@ namespace PersonalFinance.Api
         [JsonPropertyName("currency_to")]
         public string CurrencyTo { get; set; }
         [JsonPropertyName("amount")]
-        public string Amount { get; set; }
+        public decimal Amount { get; set; }
         [JsonPropertyName("rates_source")]
         public string FxRatesSource { get; set; }
 
-        public ConversionRequest(string currencyFrom, string currencyTo, string amount, string fxRatesSource)
+        public ConversionRequest(string currencyFrom, string currencyTo, decimal amount, string fxRatesSource)
         {
-            this.CurrencyFrom = currencyFrom;
-            this.CurrencyTo = currencyTo;
+            this.CurrencyFrom = currencyFrom.ToUpper();
+            this.CurrencyTo = currencyTo.ToUpper();
             this.Amount = amount;
             this.FxRatesSource = fxRatesSource;
         }

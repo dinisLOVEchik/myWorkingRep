@@ -23,7 +23,7 @@ namespace PersonalFinance.Api.Controllers
                 return BadRequest("The request data was entered incorrectly! Try again.");
             var fxRatesProvider = _fxRatesProviderResolver.Resolve(request.FxRatesSource);
             var converter = new CurrencyConverter(fxRatesProvider);
-            var rate = converter.Convert(request.CurrencyFrom, request.CurrencyTo, Int32.Parse(request.Amount));
+            var rate = converter.Convert(request.CurrencyFrom, request.CurrencyTo, request.Amount);
             var source = converter.GetRateProviderSource();
             var response = new
             {

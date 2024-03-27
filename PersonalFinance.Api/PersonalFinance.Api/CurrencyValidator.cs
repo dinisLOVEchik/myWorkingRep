@@ -6,10 +6,10 @@ namespace PersonalFinance.Api
     {
         private readonly string _currencyPattern = "^[A-Z]{3}$";
 
-        public bool ValidateRequest(string from, string to, string am)
+        public bool ValidateRequest(string from, string to, decimal am)
         {
             return Regex.IsMatch(from, _currencyPattern) && Regex.IsMatch(to, _currencyPattern)
-                && int.TryParse(am, out int amount);
+                && decimal.TryParse(am.ToString(), out decimal amount);
         }
     }
 }
