@@ -1,4 +1,6 @@
-﻿namespace PersonalFinance.Services
+﻿using System;
+
+namespace PersonalFinance.Services
 {
     public class CurrencyConverter
     {
@@ -13,6 +15,10 @@
         {
             var rate = _rateProvider.GetRate(currencyFrom, currencyTo);
             return rate * amount;
+        }
+        public RateResponse[] GetAll()
+        {
+            return _rateProvider.GetAll();
         }
 
         public string GetRateProviderSource()

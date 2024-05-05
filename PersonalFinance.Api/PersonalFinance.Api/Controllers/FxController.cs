@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Asn1.Ocsp;
 using PersonalFinance.Services;
 
 namespace PersonalFinance.Api.Controllers
@@ -35,18 +37,19 @@ namespace PersonalFinance.Api.Controllers
         }
 
         [HttpGet]
-        public RateResponse[] Rates()//([FromBody] string rates_source) 
+        public IActionResult Rates([FromQuery]string rates_source="default param") 
         {
-            CsvRateProvider csvRate = new CsvRateProvider("./data/Output.csv", ';', 10000);
-            RateResponse[] array1 = new RateResponse[csvRate.rates().Count];
-            for (int i = 0; i < csvRate.rates().Count; i++)
+            try
             {
-                string value1 = csvRate.rates()[i][0];
-                string value2 = csvRate.rates()[i][1];
-                string value3 = csvRate.rates()[i][2];
-                array1[i] = new RateResponse(value1, value2, value3);
+                var fxRatesProvider = _fxRatesProviderResolver.Resolve(rates_source);
+
+                var converter = new CurrencyConverter(fxRatesProvider);
+                return Ok(new { rate_source = converter.GetAll() });
             }
-            return array1;
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound($"Failed to resolve FxRatesProvider for source: {rates_source}. {ex.Message}");
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PersonalFinance.Api
+namespace PersonalFinance.Services
 {
     public class RateResponse
     {

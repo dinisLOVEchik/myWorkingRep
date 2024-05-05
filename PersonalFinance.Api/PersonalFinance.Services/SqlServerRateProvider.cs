@@ -40,5 +40,9 @@ namespace PersonalFinance.Services
             }
             return 0;
         }
+        public RateResponse[] GetAll()
+        {
+            return new RateResponse[0];
+        }
     }
 }
