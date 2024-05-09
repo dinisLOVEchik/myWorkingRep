@@ -16,7 +16,7 @@ namespace PersonalFinance.Services
             var rate = _rateProvider.GetRate(currencyFrom, currencyTo);
             return rate * amount;
         }
-        public RateResponse[] GetAll()
+        public CurrencyExchangeRate[] GetAll()
         {
             return _rateProvider.GetAll();
         }

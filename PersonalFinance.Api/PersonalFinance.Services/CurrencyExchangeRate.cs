@@ -2,7 +2,7 @@
 
 namespace PersonalFinance.Services
 {
-    public class RateResponse
+    public class CurrencyExchangeRate
     {
         [JsonPropertyName("from")]
         public string From { get; set; }
@@ -11,7 +11,7 @@ namespace PersonalFinance.Services
         [JsonPropertyName("rate")]
         public string Rate { get; set; }
 
-        public RateResponse(string from, string to, string rate)
+        public CurrencyExchangeRate(string from, string to, string rate)
         {
             this.From = from.ToUpper();
             this.To = to.ToUpper();

@@ -16,4 +16,8 @@ public class FxRatesProviderResolver
             ? providers[source]
             : throw new KeyNotFoundException("FxRatesProvider not found");    
     }
+    public Dictionary<string, IRateProvider> GetProviders()
+    {
+        return providers;
+    }
 }

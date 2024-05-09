@@ -41,9 +41,38 @@ namespace PersonalFinance.Services
             }
             return 0;
         }
-        public RateResponse[] GetAll()
+        public CurrencyExchangeRate[] GetAll()
         {
-            return new RateResponse[0];
+            List<CurrencyExchangeRate> listOfRows = new List<CurrencyExchangeRate>();
+            string sql = "SELECT * FROM rates";
+            using var mySqlConnection = new MySqlConnection(_connectionString);
+            using var mySqlCommand = new MySqlCommand(sql, mySqlConnection);
+            mySqlConnection.Open();
+            using var reader = mySqlCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                var currFrom = reader.GetString(0);
+                var currTo = reader.GetString(1);
+                var rate = reader.GetDecimal(2);
+                listOfRows.Add(new CurrencyExchangeRate(currFrom, currTo, rate.ToString()));
+                //дописал этот блок, чтобы от кол-ва данных swagger не сошел с ума
+                if (listOfRows.Count == 10)
+                    break;
+            }
+            return listOfRows.ToArray();
+        }
+        public bool IsAvailable()
+        {
+            try
+            {
+                using var mySqlConnection = new MySqlConnection(_connectionString);
+                mySqlConnection.Open();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

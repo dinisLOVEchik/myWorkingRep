@@ -77,19 +77,23 @@ namespace PersonalFinance.Services
             }
         }
 
-        public RateResponse[] GetAll()
+        public CurrencyExchangeRate[] GetAll()
         {
             string[] csvLines = File.ReadAllLines(_filename);
-            RateResponse[] listOfRowsFromCsvFile = new RateResponse[10];
+            CurrencyExchangeRate[] listOfRowsFromCsvFile = new CurrencyExchangeRate[10];
             for (int i = 1; i <= 10; i++)
             {
                 string[] rows = csvLines[i].Split(_delimetr);
                 var currFrom = rows[0];
                 var currTo = rows[1];
                 var rate = rows[2];
-                listOfRowsFromCsvFile[i-1] = new RateResponse(currFrom, currTo, rate);
+                listOfRowsFromCsvFile[i-1] = new CurrencyExchangeRate(currFrom, currTo, rate);
             }
             return listOfRowsFromCsvFile;
+        }
+        public bool IsAvailable()
+        {
+            return File.Exists(_filename);
         }
     }
 }
